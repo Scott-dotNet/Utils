@@ -1,4 +1,4 @@
-﻿namespace MvcMovie.Utils
+﻿namespace Utils_DotNet.IdFactory
 {
     /// <summary>
     /// 主键生成器，采用雪花算法

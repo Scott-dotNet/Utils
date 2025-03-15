@@ -1,1 +1,4 @@
-# Utils_DotNet
+### Utils_DotNet
+工具类库，包含了一些常用的工具类。
+
+#### 1. Id 生成器
