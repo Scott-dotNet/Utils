@@ -1,5 +1,7 @@
-﻿using System.Text;
+﻿using System.Drawing;
+using System.Text;
 using SkiaSharp;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Utils_DotNet.CaptchaHelper
 {
@@ -66,19 +68,19 @@ namespace Utils_DotNet.CaptchaHelper
         }
         #endregion 获取验证码表达式和结果
 
-        #region 生成验证码图片
+        #region 生成SKiaSharp验证码图片
         /// <summary>
         /// 根据表达式字符串生成对应图片
         /// </summary>
         /// <param name="expression"></param>
         /// <returns></returns>
-        private static byte[] CreateCaptchaImage(String expression)
+        private static byte[] CreateCaptchaSKiaSharpImage(String expression)
         {
             Random random = new Random();
             // Color
             var colors = new[] { SKColors.Red, SKColors.Green, SKColors.DarkBlue, SKColors.Black, SKColors.Orange, SKColors.Brown, SKColors.DarkCyan, SKColors.Purple };
             // Font
-            var fonts = new[] { "Consoles", "Verdana", "Microsoft Sans Serif", "Comic Sans MS", "Arial", "宋体" };
+            var fonts = new[] { "Verdana", "Microsoft Sans Serif", "Comic Sans MS", "Arial", "宋体" };
             // Canvas Configuration
             using var image2d = new SKBitmap(100, 30, SKColorType.Srgba8888, SKAlphaType.Premul);
             using var canvas = new SKCanvas(image2d);
@@ -89,12 +91,14 @@ namespace Utils_DotNet.CaptchaHelper
             for (int i = 0; i < expression.Length; i++)
             {
                 drawStyle.IsAntialias = true;
-                drawFont.Size = 30;
+                //drawFont.Size = 30;
+                drawFont.Size = random.Next(26, 33);
                 drawFont.Typeface = SKTypeface.FromFamilyName(fonts[random.Next(fonts.Length)], SKFontStyleWeight.SemiBold, SKFontStyleWidth.ExtraCondensed, SKFontStyleSlant.Upright);
                 drawStyle.Color = colors[random.Next(colors.Length)];
                 string text = expression[i].ToString();
                 int width = 16 * (i + 1);
-                int height = 28;
+                //int height = 28;
+                int height = random.Next(24, 30); 
                 canvas.DrawText(text, width, height, SKTextAlign.Center, drawFont, drawStyle);
 
             }
