@@ -1,4 +1,5 @@
 ### Utils_DotNet
-������⣬������һЩ���õĹ����ࡣ
+工具类库，包含了一些常用的工具类。
 
-#### 1. Id ������
+#### 1. Id 生成器，使用 Snow Flake生成 64位增序列的数字。
+#### 2. 密码加密加盐，使用 SHA256 加密 和 RandomNumberGenerator加盐
